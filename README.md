@@ -25,22 +25,25 @@ Gli esercizi sono divisi in **8 mondi**, ognuno con **3 livelli** da 10 domande 
 
 ## Pubblicare su GitHub Pages
 
-1. Crea un nuovo repository su GitHub (es. `matemondi`).
-2. Carica il contenuto di questa cartella (da terminale):
-   ```bash
-   git init
-   git add .
-   git commit -m "MateMondi"
-   git branch -M main
-   git remote add origin https://github.com/TUO-UTENTE/matemondi.git
-   git push -u origin main
-   ```
-   In alternativa puoi trascinare i file nella pagina del repository con **Add file → Upload files** (attenzione a includere anche la cartella nascosta `.github`).
-3. Nel repository vai su **Settings → Pages** e in **Build and deployment → Source** scegli **GitHub Actions**.
-4. Vai su **Actions**: il workflow *Deploy su GitHub Pages* compila e pubblica l'app (se era già partito prima del punto 3, rilancialo con *Re-run*).
-5. Il link da condividere sarà `https://TUO-UTENTE.github.io/matemondi/`.
+> **Pagina bianca?** Succede se GitHub pubblica la cartella principale del repository: lì c'è il codice sorgente non compilato, che il browser non sa eseguire. Usa uno dei due metodi qui sotto.
 
-Ogni nuovo push su `main` aggiorna automaticamente il sito.
+### Metodo A — il più semplice (cartella `docs`, già compilata)
+
+1. Carica tutti i file nel repository (anche la cartella `docs`).
+2. **Settings → Pages → Build and deployment**
+   - Source: **Deploy from a branch**
+   - Branch: **main** e cartella **/docs** → **Save**
+3. Dopo 1-2 minuti il sito è su `https://TUO-UTENTE.github.io/NOME-REPO/`.
+
+Nota: la cartella `docs` è una versione già pronta. Se modifichi gli esercizi in `src/`, usa il metodo B (oppure rigenera `docs` con `npm run build:docs`).
+
+### Metodo B — compilazione automatica (GitHub Actions)
+
+1. **Settings → Pages → Source: GitHub Actions**.
+2. Vai su **Actions**: il workflow *Deploy su GitHub Pages* compila e pubblica l'app (se era già partito prima, rilancialo con *Re-run all jobs*). Deve comparire la spunta verde.
+3. Ogni push su `main` aggiorna automaticamente il sito.
+
+Se carichi i file trascinandoli nella pagina del repository, controlla che ci sia anche la cartella nascosta `.github/workflows`.
 
 ## Sviluppo in locale
 
